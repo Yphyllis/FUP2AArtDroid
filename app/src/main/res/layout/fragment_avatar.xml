@@ -12,6 +12,7 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_marginBottom="@dimen/x30"
         android:background="@drawable/avatar_track_image_btn"
+        android:visibility="gone"
         android:button="@null" />
 
     <android.support.v7.widget.RecyclerView

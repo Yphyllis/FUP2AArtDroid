@@ -17,6 +17,7 @@ import com.faceunity.pta_art.R;
 import com.faceunity.pta_art.constant.FUPTAClient;
 import com.faceunity.pta_art.fragment.drive.ARFragment;
 import com.faceunity.pta_art.fragment.drive.BodyDriveFragment;
+import com.faceunity.pta_art.hd.ui.MyFragment;
 
 /**
  * Created by tujh on 2018/8/22.
@@ -80,6 +81,7 @@ public class HomeFragment extends BaseFragment
         view.findViewById(R.id.main_edit_image_btn).setOnClickListener(this);
         view.findViewById(R.id.main_avatar_body_btn).setOnClickListener(this);
         view.findViewById(R.id.main_group_photo_image_btn).setOnClickListener(this);
+        view.findViewById(R.id.main_my_btn).setOnClickListener(this);
     }
 
 
@@ -110,6 +112,10 @@ public class HomeFragment extends BaseFragment
                 break;
             case R.id.main_group_photo_image_btn:
                 mActivity.showBaseFragment(GroupPhotoFragment.TAG);
+                mTrackBtn.setChecked(false);
+                break;
+            case R.id.main_my_btn:
+                mActivity.showBaseFragment(MyFragment.Companion.getTAG());
                 mTrackBtn.setChecked(false);
                 break;
         }

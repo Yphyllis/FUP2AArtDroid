@@ -12,6 +12,7 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_marginBottom="@dimen/x30"
         android:background="@drawable/avatar_track_image_btn"
+        android:visibility="gone"
         android:button="@null" />
 
     <TextView
@@ -91,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageView
@@ -115,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageView
@@ -130,6 +133,31 @@
                 android:layout_marginTop="@dimen/x4"
                 android:gravity="center"
                 android:text="合影"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_size_20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_my_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/x56"
+                android:layout_height="@dimen/x56"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/main_group_photo_image_btn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/x28"
+                android:layout_marginTop="@dimen/x4"
+                android:gravity="center"
+                android:text="车友圈"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_20" />
         </LinearLayout>

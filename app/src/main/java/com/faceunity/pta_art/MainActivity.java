@@ -44,6 +44,7 @@ import com.faceunity.pta_art.fragment.VideoListFragment;
 import com.faceunity.pta_art.fragment.drive.ARFragment;
 import com.faceunity.pta_art.fragment.drive.BodyDriveFragment;
 import com.faceunity.pta_art.fragment.drive.TextDriveFragment;
+import com.faceunity.pta_art.hd.ui.MyFragment;
 import com.faceunity.pta_art.renderer.CameraRenderer;
 import com.faceunity.pta_art.utils.SurfaceViewOutlineProvider;
 import com.faceunity.pta_art.utils.ToastUtil;
@@ -477,6 +478,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 mBaseFragment = new ARFragment();
             } else if (TextDriveFragment.TAG.equals(tag)) {
                 mBaseFragment = new TextDriveFragment();
+            } else if (MyFragment.Companion.getTAG().equals(tag)) {
+                mBaseFragment = new MyFragment();
             }
             transaction.add(R.id.main_fragment_layout, mBaseFragment, tag);
         } else {

@@ -197,8 +197,13 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.RECORD_AUDIO,
                             Manifest.permission.READ_PHONE_STATE}, 0);
-        } else if (TextUtils.isEmpty(Constant.web_url_check) || !TextUtils.isEmpty(preferences.getString(CHECK_CODE_KEY, ""))) {
+        } else if (isCheckedCodeKey()) {
             startFUMainActivity();
         }
+    }
+
+    private boolean isCheckedCodeKey() {
+        return true;
+//        return TextUtils.isEmpty(Constant.web_url_check) || !TextUtils.isEmpty(preferences.getString(CHECK_CODE_KEY, ""));
     }
 }

@@ -35,9 +35,9 @@ public class AliTtsHandler {
         fuTtsEngine = TtsEngineUtils.getInstance().getFUStaEngine();
         PrepareOptions popts = new PrepareOptions();
         //TODO #error 请联系Faceunity获取tts地址
-        popts.setHost(/*"http://xxxxxxxx.com"*/);
+//        popts.setHost(/*"http://xxxxxxxx.com"*/);
         popts.setPort(80);
-        popts.setBranch(/*"/xxxxxxxx"*/);
+//        popts.setBranch(/*"/xxxxxxxx"*/);
         fuTtsEngine.prepare(popts);
     }
 

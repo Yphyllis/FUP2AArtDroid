@@ -2,7 +2,7 @@ package com.faceunity.pta_art.evergrande.module.login
 
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.faceunity.pta_art.R
 import com.faceunity.pta_art.evergrande.utils.initCommonToolbar
 

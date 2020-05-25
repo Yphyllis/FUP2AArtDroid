@@ -1,6 +1,6 @@
 package com.faceunity.pta_art.fragment.editface.core;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import com.faceunity.pta_art.R;
 import com.faceunity.pta_art.constant.FilePathFactory;

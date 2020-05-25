@@ -1,7 +1,7 @@
 package com.faceunity.pta_art.evergrande.utils
 
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.faceunity.pta_art.R
@@ -11,20 +11,20 @@ import com.faceunity.pta_art.R
  * 自动使用 {layout="@layout/widget_toolbar"} 中 id = toolbarWidgetCommon 的 toolbar 实例
  */
 fun AppCompatActivity.initCommonToolbar(
-        @DrawableRes homeResId: Int? = R.drawable.ic_back, onHomeClickListener: () -> Boolean = { false }
+        @DrawableRes homeResId: Int? = R.drawable.icon_back_tab, onHomeClickListener: () -> Boolean = { false }
 ) {
-    if (this.toolbarWidgetCommon == null) {
-        throw IllegalStateException("Please include  layout=\"@layout/widget_toolbar\" to your layout xml")
-    }
-    setSupportActionBar(toolbarWidgetCommon)
-    supportActionBar?.let {
-        kotlin.with(it) {
-            setDisplayHomeAsUpEnabled(true)
-            homeResId?.run {
-                setHomeAsUpIndicator(this)
-            }
-        }
-    }
+//    if (this.toolbarWidgetCommon == null) {
+//        throw IllegalStateException("Please include  layout=\"@layout/widget_toolbar\" to your layout xml")
+//    }
+//    setSupportActionBar(toolbarWidgetCommon)
+//    supportActionBar?.let {
+//        kotlin.with(it) {
+//            setDisplayHomeAsUpEnabled(true)
+//            homeResId?.run {
+//                setHomeAsUpIndicator(this)
+//            }
+//        }
+//    }
     title = "" // 默认页面无标题
 
 }

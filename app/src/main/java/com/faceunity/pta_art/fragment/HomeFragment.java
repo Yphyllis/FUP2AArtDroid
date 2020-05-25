@@ -1,8 +1,8 @@
 package com.faceunity.pta_art.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.faceunity.pta_art.BuildConfig;
 import com.faceunity.pta_art.R;
 import com.faceunity.pta_art.constant.FUPTAClient;
-import com.faceunity.pta_art.fragment.drive.ARFragment;
 import com.faceunity.pta_art.fragment.drive.BodyDriveFragment;
 import com.faceunity.pta_art.hd.ui.MyFragment;
 

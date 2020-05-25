@@ -26,6 +26,8 @@
         <item name="android:windowBackground">@drawable/guide_img</item>
     </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <!-- Frame叠加，isFloat是否浮动，isTranslucent是否半透明，Dim是背景是否变暗 -->
     <style name="AudioDialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>

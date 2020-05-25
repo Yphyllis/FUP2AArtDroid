@@ -31,4 +31,36 @@
     <color name="customer_switch_unchecked_text_color">#A3A8AF</color>
     <color name="customer_switch_background">#F5F7FA</color>
     <color name="customer_switch_border">#EBEDF0</color>
+
+    <!--base-->
+    <color name="colorAppBackground">#FFFFFF</color>
+    <color name="colorAppTheme">#FCFF00</color>
+    <color name="colorAppPrimary">#000000</color>
+    <color name="colorAppMinor">#8D8D8D</color>
+    <color name="colorAppThird">#AA000000</color>
+    <color name="colorAppHint">#BCBCA7</color>
+
+    <!--主文字颜色-->
+    <color name="textPrimaryColor">@color/colorAppPrimary</color>
+    <!--辅文字颜色-->
+    <color name="textMinorColor">@color/colorAppMinor</color>
+    <!--其他间于主文字与辅文字之间的颜色-->
+    <color name="textNormalColor">@color/colorAppThird</color>
+    <!--App 主题色-->
+    <color name="textThemeColor">@color/colorAppTheme</color>
+    <!--App 错误提示文字颜色-->
+    <color name="textWrongColor">#F72E7B</color>
+    <!--按钮不可点击颜色-->
+    <color name="btnNormalColor">#FCFF00</color>
+    <!--按钮可点击颜色-->
+    <color name="btnClickColor">#D4D572</color>
+    <!--按钮 press 颜色-->
+    <color name="btnPressColor">#D4D572</color>
+
+    <!--黑色按钮不可点击颜色-->
+    <color name="btnBlackNormalColor">#616161</color>
+    <!--黑色按钮可点击颜色-->
+    <color name="btnBlackClickColor">#676767</color>
+    <!--黑色按钮 press 颜色-->
+    <color name="btnBlackPressColor">#393939</color>
 </resources>

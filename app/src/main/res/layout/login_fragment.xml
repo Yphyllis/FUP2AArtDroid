@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/margin_normal"
+    android:layout_marginTop="?android:actionBarSize"
+    android:layout_marginEnd="@dimen/margin_normal">
+
+    <TextView
+        android:id="@+id/tvSignInTitle"
+        style="@style/TextWrongTipStyle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:textColor="@color/textPrimaryColor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        style="@style/EditInputStyle"
+        android:layout_marginStart="@dimen/margin_tiny"
+        android:layout_marginTop="@dimen/margin_larger"
+        android:layout_marginEnd="@dimen/margin_tiny"
+        android:hint="@string/account_enter_address"
+        android:imeOptions="actionNext"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:maxLength="50"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:outlineSpotShadowColor="@color/colorPrimary"
+        android:paddingStart="@dimen/edit_item_margin_start"
+        android:shadowColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/tvSignInTitle"
+        tools:ignore="MissingConstraints,RtlSymmetry,UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        style="@style/EditInputStyle"
+        android:layout_marginStart="@dimen/margin_tiny"
+        android:gravity="center_vertical"
+        android:text="@string/account_address"
+        app:layout_constraintBottom_toBottomOf="@id/editEmail"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        style="@style/EditInputStyle"
+        android:layout_marginStart="@dimen/margin_tiny"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_tiny"
+        android:hint="@string/account_enter_password"
+        android:imeOptions="actionGo"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:maxLength="50"
+        android:paddingStart="@dimen/edit_item_margin_start"
+        app:layout_constraintTop_toBottomOf="@id/editEmail"
+        tools:ignore="MissingConstraints,RtlSymmetry,UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/tvPassword"
+        style="@style/EditInputStyle"
+        android:layout_marginStart="@dimen/margin_tiny"
+        android:gravity="center_vertical"
+        android:text="@string/account_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/editPassword" />
+
+
+    <TextView
+        android:id="@+id/tvWrongTip"
+        style="@style/TextWrongTipStyle"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/account_wrong_email_password"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword"
+        tools:ignore="MissingConstraints"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        style="@style/ButtonWithBlackSelectorStyle"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/log_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWrongTip"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvForget"
+        style="@style/TextTipsMidInParentStyle"
+        android:padding="@dimen/margin_normal"
+        android:text="@string/register"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.faceunity.pta_art.core.FUPTARenderer;
 import com.faceunity.pta_art.core.authpack;
 import com.faceunity.pta_art.core.client.PTAClientWrapper;
@@ -59,6 +60,8 @@ public class FUApplication extends Application {
 
         TtsEngineUtils.getInstance().init(this);
         initResolution();
+
+        DoraemonKit.install(this ,"pId");
     }
 
     //

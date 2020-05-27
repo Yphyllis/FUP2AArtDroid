@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 28
@@ -14,6 +15,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters 'arm64-v8a'
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //手动告知RxHttp要使用的RxJava版本，才会生成asXxx方法
+                arguments = [
+                        rxhttp_okhttp: '3.12.1',
+                        rxhttp_rxjava: 'rxjava2'
+                ]
+            }
         }
     }
     buildTypes {
@@ -33,6 +44,12 @@ android {
                 'src/mian/res',
                 'src/main/res_icon',
         ]
+    }
+
+    packagingOptions {
+        pickFirst 'META-INF/*'
+        exclude 'lib/arm64-v8a/libc++_shared.so'
+        exclude 'lib/armeabi-v7a/libc++_shared.so'
     }
 
     lintOptions {
@@ -58,6 +75,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 
@@ -86,11 +104,24 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02' // use -ktx for Kotlin
     implementation 'androidx.navigation:navigation-ui:2.0.0-rc02'
 
-    implementation 'com.rxjava.rxhttp:rxhttp:1.1.6'
-    //注解处理器，生成RxHttp类，即可一条链发送请求
-    annotationProcessor 'com.rxjava.rxhttp:rxhttp-compiler:1.1.6'
-    //管理RxJava及生命周期，Activity/Fragment 销毁，自动关闭未完成的请求
-    implementation 'com.rxjava.rxlife:rxlife:1.0.9'
+    implementation 'com.ljx.rxhttp:rxhttp:2.2.4'
+    kapt 'com.ljx.rxhttp:rxhttp-compiler:2.2.4' //生成RxHttp类，kotlin用户，请使用kapt替代annotationProcessor
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.ljx.rxlife:rxlife-coroutine:2.0.0'  //管理协程生命周期，页面销毁，关闭请求
+    implementation 'com.ljx.rxlife2:rxlife-rxjava:2.0.0'    //管理RxJava2生命周期，页面销毁，关闭请求
+
+    // koin = kotlin 依赖注入框架
+    implementation 'org.koin:koin-android:2.0.0-GA'
+    implementation 'org.koin:koin-android-scope:2.0.0-GA'
+    implementation 'org.koin:koin-android-viewmodel:2.0.0-GA'
+
+    implementation 'org.jetbrains.anko:anko:0.10.8'
+
+    implementation 'com.tencent:mmkv-static:1.1.1'
+
+    implementation 'com.github.shenwenjun:Asshole:1.2-SNAPSHOT'
 
     debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:3.1.5'
     releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:3.1.5'

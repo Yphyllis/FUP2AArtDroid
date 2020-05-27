@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.faceunity.pta_art.constant.Constant;
+import com.faceunity.pta_art.evergrande.module.login.LoginActivity;
 import com.faceunity.pta_art.utils.FileUtil;
 import com.faceunity.pta_art.web.OkHttpUtils;
 
@@ -181,7 +182,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        startActivity(new Intent(GuideActivity.this, SelectStyleActivity.class));
+        startActivity(new Intent(GuideActivity.this, LoginActivity.class));
         finish();
         overridePendingTransition(0, 0);
     }

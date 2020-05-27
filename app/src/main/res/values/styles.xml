@@ -28,6 +28,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@color/colorAppBackground</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <!-- Frame叠加，isFloat是否浮动，isTranslucent是否半透明，Dim是背景是否变暗 -->
     <style name="AudioDialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -30,7 +30,6 @@
             android:theme="@style/GuideTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -57,7 +56,8 @@
         <activity
             android:name=".evergrande.module.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ActivityBaseTheme" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
     </application>
 

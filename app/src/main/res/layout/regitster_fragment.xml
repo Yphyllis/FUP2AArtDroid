@@ -12,15 +12,15 @@
     <TextView
         android:id="@+id/tvSignInTitle"
         style="@style/TextBigTitleStyle"
-        android:text="@string/log_in"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/margin_normal"
+        android:text="@string/register"
         android:textColor="@color/textPrimaryColor"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/editUsername"
+        android:id="@+id/editPhone"
         style="@style/EditInputStyle"
         android:layout_marginStart="@dimen/margin_tiny"
         android:layout_marginTop="@dimen/margin_larger"
@@ -28,7 +28,7 @@
         android:hint="@string/account_enter_address"
         android:imeOptions="actionNext"
         android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:maxLength="50"
         android:outlineAmbientShadowColor="@color/colorPrimary"
         android:outlineSpotShadowColor="@color/colorPrimary"
@@ -44,7 +44,7 @@
         android:layout_marginStart="@dimen/margin_tiny"
         android:gravity="center_vertical"
         android:text="@string/account_address"
-        app:layout_constraintBottom_toBottomOf="@id/editUsername"
+        app:layout_constraintBottom_toBottomOf="@id/editPhone"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -59,7 +59,7 @@
         android:inputType="textPassword"
         android:maxLength="50"
         android:paddingStart="@dimen/edit_item_margin_start"
-        app:layout_constraintTop_toBottomOf="@id/editUsername"
+        app:layout_constraintTop_toBottomOf="@id/editPhone"
         tools:ignore="MissingConstraints,RtlSymmetry,UnusedAttribute" />
 
     <TextView
@@ -72,33 +72,14 @@
         app:layout_constraintTop_toTopOf="@id/editPassword" />
 
 
-    <TextView
-        android:id="@+id/tvWrongTip"
-        style="@style/TextWrongTipStyle"
-        android:layout_marginTop="@dimen/margin_small"
-        android:text="@string/account_wrong_email_password"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/editPassword"
-        tools:ignore="MissingConstraints"
-        tools:visibility="visible" />
-
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         style="@style/ButtonWithBlackSelectorStyle"
         android:layout_marginTop="@dimen/margin_normal"
-        android:text="@string/log_in"
+        android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWrongTip"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tvRegister"
-        style="@style/TextTipsMidInParentStyle"
-        android:padding="@dimen/margin_normal"
-        android:textSize="@dimen/text_normal"
-        android:text="@string/register"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

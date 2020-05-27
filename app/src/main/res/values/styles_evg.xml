@@ -45,5 +45,13 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextBigTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/textPrimaryColor</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+
 
 </resources>

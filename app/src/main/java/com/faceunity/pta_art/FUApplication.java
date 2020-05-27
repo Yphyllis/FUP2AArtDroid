@@ -11,11 +11,12 @@ import com.faceunity.pta_art.core.client.PTAClientWrapper;
 import com.faceunity.pta_art.utils.sta.TtsEngineUtils;
 import com.faceunity.pta_art.web.OkHttpUtils;
 import com.faceunity.pta_helper.FUAuthCheck;
+import com.tencent.mmkv.MMKV;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
+import rxhttp.wrapper.param.RxHttp;
 
 /**
  * Created by tujh on 2018/3/30.
@@ -61,7 +62,10 @@ public class FUApplication extends Application {
         TtsEngineUtils.getInstance().init(this);
         initResolution();
 
-        DoraemonKit.install(this ,"pId");
+        MMKV.initialize(this);
+        RxHttp.setDebug(BuildConfig.DEBUG);
+        DoraemonKit.install(this, "pId");
+
     }
 
     //

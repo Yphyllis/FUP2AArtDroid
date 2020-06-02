@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.faceunity.pta_art.R
 import com.faceunity.pta_art.SelectStyleActivity
-import com.faceunity.pta_art.evergrande.module.login.data.UserService
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager
 import com.faceunity.pta_art.evergrande.utils.findNavController
 import com.faceunity.pta_art.evergrande.utils.setTitle
 import com.faceunity.pta_art.evergrande.utils.toast
@@ -60,9 +60,9 @@ class LoginFragment : Fragment() {
             toast(R.string.input_empty)
             return
         }
-        UserService.login(phone, password)
-                .compose(Transformers.asyncAndWaiting())
-                .`as`(RxLife.asOnMain(viewLifecycleOwner, Lifecycle.Event.ON_STOP))
+        UserManager.login(phone, password)
+                .compose(Transformers.asyncAndWaiting<Any>())
+                .`as`(RxLife.asOnMain<Any>(viewLifecycleOwner, Lifecycle.Event.ON_STOP))
                 .subscribe({
                     toast(R.string.login_success)
                     activity?.run {

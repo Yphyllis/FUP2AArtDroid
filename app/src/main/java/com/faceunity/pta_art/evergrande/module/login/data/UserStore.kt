@@ -19,18 +19,11 @@ object UserStore {
     }
 
     private fun initUserInfo() {
-        userBO?.run {
-            val userDO = EVGStorage.getDefaultStore().getParcelable(KEY_USER_DO, UserDO::class.java)
-            userDO?.run {
-                userBO = UserBO(this)
-            }
+        if (userBO != null) return
+        val userDO = EVGStorage.getDefaultStore().getParcelable(KEY_USER_DO, UserDO::class.java)
+        userDO?.run {
+            userBO = UserBO(this)
         }
-    }
-
-    fun isUserHasLoged(): Boolean {
-        return getUserInfo()?.run {
-            true
-        } ?: false
     }
 
 }

@@ -8,18 +8,20 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.faceunity.pta_art.constant.Constant;
 import com.faceunity.pta_art.evergrande.module.login.LoginActivity;
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager;
 import com.faceunity.pta_art.utils.FileUtil;
 import com.faceunity.pta_art.web.OkHttpUtils;
 
@@ -182,7 +184,11 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+        if (UserManager.INSTANCE.isUserHasLogged()) {
+            startActivity(new Intent(GuideActivity.this, SelectStyleActivity.class));
+        } else {
+            startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+        }
         finish();
         overridePendingTransition(0, 0);
     }

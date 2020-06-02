@@ -9,7 +9,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.faceunity.pta_art.R
-import com.faceunity.pta_art.evergrande.module.login.data.UserService
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager
 import com.faceunity.pta_art.evergrande.utils.findNavController
 import com.faceunity.pta_art.evergrande.utils.setTitle
 import com.faceunity.pta_art.evergrande.utils.toast
@@ -51,9 +51,9 @@ class RegisterFragment : Fragment() {
             toast(R.string.input_empty)
             return
         }
-        UserService.register(phone, password)
-                .compose(Transformers.waiting())
-                .`as`(RxLife.asOnMain(viewLifecycleOwner, Lifecycle.Event.ON_STOP))
+        UserManager.register(phone, password)
+                .compose(Transformers.waiting<Any>())
+                .`as`(RxLife.asOnMain<Any>(viewLifecycleOwner, Lifecycle.Event.ON_STOP))
                 .subscribe({
                     toast(R.string.register_success)
                     findNavController().popBackStack()

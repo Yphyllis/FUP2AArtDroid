@@ -27,6 +27,7 @@ import com.faceunity.pta_art.core.NamaCore;
 import com.faceunity.pta_art.core.client.AvatarBuilder;
 import com.faceunity.pta_art.entity.AvatarPTA;
 import com.faceunity.pta_art.entity.DBHelper;
+import com.faceunity.pta_art.evergrande.module.avatar.AvatarManager;
 import com.faceunity.pta_art.renderer.CameraRenderer;
 import com.faceunity.pta_art.ui.CreateAvatarDialog;
 import com.faceunity.pta_art.ui.NormalDialog;
@@ -224,6 +225,7 @@ public class TakePhotoFragment extends BaseFragment implements View.OnClickListe
 
     public void createAvatar(final Bitmap bitmap, final float[] faceRect, final String name) {
         Log.e(TAG, "createAvatar");
+        AvatarManager.INSTANCE.createAvatarStart();
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -604,6 +606,8 @@ public class TakePhotoFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void createAvatarComplete(String dir, byte[] objData) {
+        // todo 后面检查这个时机是否正确
+        AvatarManager.INSTANCE.createAvatarComplete();
         if (debugCreateInfo != null) {
             Method createAvatarDebug = null;
             try {

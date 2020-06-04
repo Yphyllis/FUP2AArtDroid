@@ -28,4 +28,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/tvLogout"
+        android:text="退出登录"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/margin_small_normal"
+        android:textSize="@dimen/text_normal"
+        android:layout_width="wrap_content"
+        android:textColor="@color/textWrongColor"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

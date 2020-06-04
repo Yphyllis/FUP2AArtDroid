@@ -12,8 +12,19 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_marginBottom="@dimen/x30"
         android:background="@drawable/avatar_track_image_btn"
-        android:visibility="gone"
-        android:button="@null" />
+        android:button="@null"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:background="@color/cE6F66969"
+        android:padding="10dp"
+        android:text="更新至车机"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/main_version_text"
@@ -92,8 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/x56"
@@ -117,8 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/x56"

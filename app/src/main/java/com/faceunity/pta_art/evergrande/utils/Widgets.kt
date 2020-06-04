@@ -1,6 +1,5 @@
 package com.faceunity.pta_art.evergrande.utils
 
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -56,10 +55,14 @@ fun Fragment.toast(@StringRes textRes: Int) {
     ToastUtil.showCenterToast(context, getString(textRes))
 }
 
-fun toastError(e:Throwable) {
+fun toastError(e: Throwable) {
     if (e is NetException) {
         ToastUtil.showCenterToast(FUApplication.getInstance(), "errorCode=${e.msgCode} & error is ${e.msg}")
-    }else {
+    } else {
         ToastUtil.showCenterToast(FUApplication.getInstance(), e.toString())
     }
+}
+
+fun toast(text: String) {
+    ToastUtil.showCenterToast(FUApplication.getInstance(), text)
 }

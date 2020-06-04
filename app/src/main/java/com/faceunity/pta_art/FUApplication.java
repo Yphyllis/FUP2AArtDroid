@@ -8,6 +8,8 @@ import com.didichuxing.doraemonkit.DoraemonKit;
 import com.faceunity.pta_art.core.FUPTARenderer;
 import com.faceunity.pta_art.core.authpack;
 import com.faceunity.pta_art.core.client.PTAClientWrapper;
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager;
+import com.faceunity.pta_art.evergrande.utils.transformers.Waiting;
 import com.faceunity.pta_art.utils.sta.TtsEngineUtils;
 import com.faceunity.pta_art.web.OkHttpUtils;
 import com.faceunity.pta_helper.FUAuthCheck;
@@ -16,6 +18,7 @@ import com.tencent.mmkv.MMKV;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
 import rxhttp.wrapper.param.RxHttp;
 
 /**
@@ -64,6 +67,8 @@ public class FUApplication extends Application {
 
         MMKV.initialize(this);
         RxHttp.setDebug(BuildConfig.DEBUG);
+        RxHttp.setOnParamAssembly(param -> param.addHeader("Authorization", UserManager.INSTANCE.getToken()));
+        Waiting.INSTANCE.initialize(this);
         DoraemonKit.install(this, "pId");
 
     }

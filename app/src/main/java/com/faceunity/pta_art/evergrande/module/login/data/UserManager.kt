@@ -18,4 +18,21 @@ object UserManager {
         } ?: false
     }
 
+    fun getUserId(): String {
+        return UserStore.getUserInfo()?.userDO?.userId ?: ""
+    }
+
+    fun getToken(): String {
+        return UserStore.getUserInfo()?.userDO?.token ?: ""
+    }
+
+    fun logout(): Completable {
+        return UserService.logout()
+                .ignoreElements()
+                .onErrorComplete()
+                .doOnComplete {
+                    UserStore.clear()
+                }
+    }
+
 }

@@ -13,6 +13,7 @@ import android.text.TextUtils;
 
 import com.faceunity.pta_art.constant.Constant;
 import com.faceunity.pta_art.entity.AvatarPTA;
+import com.faceunity.pta_art.evergrande.module.avatar.AvatarManager;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -31,15 +32,15 @@ import static com.faceunity.pta_art.constant.Constant.filePath;
 public abstract class FileUtil {
 
     public static String createFilePath(int gender, String name) {
-        String dir = filePath + DateUtil.getCurrentDate();
-        dir += Constant.style == Constant.style_new ? "_new" : "_art";
-        dir += gender == AvatarPTA.gender_boy ? "_boy" : "_girl";
-        if (name != null) {
-            String[] n = name.split("\\.");
-            if (n.length > 0) {
-                dir += "_" + n[0];
-            }
-        }
+        String dir = filePath + AvatarManager.INSTANCE.getNewAvatarFileDir();
+//        dir += Constant.style == Constant.style_new ? "_new" : "_art";
+//        dir += gender == AvatarPTA.gender_boy ? "_boy" : "_girl";
+//        if (name != null) {
+//            String[] n = name.split("\\.");
+//            if (n.length > 0) {
+//                dir += "_" + n[0];
+//            }
+//        }
         return dir + File.separator;
     }
 

@@ -26,4 +26,11 @@ object UserService {
                 .map { it.result }
     }
 
+    fun logout(): Observable<Boolean> {
+        return RxHttp.postJson("/userCenter/loginOut")
+                .add("userId", UserManager.getUserId())
+                .asResponse(BaseResult::class.java)
+                .map { it.result }
+    }
+
 }

@@ -26,4 +26,9 @@ object UserStore {
         }
     }
 
+    fun clear() {
+        userBO = null
+        EVGStorage.getDefaultStore().clearAll()
+    }
+
 }

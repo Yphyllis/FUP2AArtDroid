@@ -3,7 +3,10 @@ package com.faceunity.pta_art.entity;
 import android.text.TextUtils;
 
 import com.faceunity.pta_art.constant.FilePathFactory;
+import com.faceunity.pta_art.evergrande.utils.ConfigFileUtil;
+import com.google.gson.annotations.Expose;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,14 +26,16 @@ public class AvatarPTA implements Serializable {
     public static final int gender_girl = 1;
     public static final int gender_mid = 2;
 
+    @Expose
     private boolean isCreateAvatar = true;
 
     private String bundleDir = "";
     private int originPhotoRes = -1;
     private String originPhoto = "";
     private String originPhotoThumbNail = "";
-    private String headFile = "";
+    private String headFile = "";   // 本地是完整的路径，server 上只有文件名
     private String bodyFile = "";
+    private String hairFile = "";    // 本地是完整的路径，server 上只有文件名
     private int gender = gender_boy;//识别性别, gender 0 is man 1 is woman
     private int bodyLevel = 0;// 身体的级别
     private int hairIndex = 0;
@@ -49,7 +54,9 @@ public class AvatarPTA implements Serializable {
     private int faceMakeupIndex = 0;
     private int lipglossIndex = 1;
     private int pupilIndex = 0;
+    @Expose
     private String expressionFile = "";
+    @Expose
     private String[] otherFiles;
 
     private double skinColorValue = -1;//必须在bundle加载后操作
@@ -71,6 +78,11 @@ public class AvatarPTA implements Serializable {
     private int background2DIndex = -1;
     private int background3DIndex = -1;
     private int backgroundAniIndex = -1;
+
+    @Expose
+    private String modelId = "";
+    @Expose
+    private String configPath = "";
 
     public AvatarPTA() {
         hairIndex = -1;
@@ -182,6 +194,10 @@ public class AvatarPTA implements Serializable {
 
     public String getHeadFile() {
         return headFile;
+    }
+
+    public void setHeadFile(String headFile) {
+        this.headFile = headFile;
     }
 
     public String getBodyFile() {
@@ -408,6 +424,10 @@ public class AvatarPTA implements Serializable {
         return bundleDir + name;
     }
 
+    public void setHairFile(String hairFile) {
+        this.hairFile = hairFile;
+    }
+
     public String getGlassesFile() {
         return getStringByIndex(FilePathFactory.glassesBundleRes(gender), glassesIndex);
     }
@@ -549,6 +569,41 @@ public class AvatarPTA implements Serializable {
         this.hatColorValue = hatColorValue;
     }
 
+    public String getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
+    }
+
+    public String getConfigPath() {
+        return configPath;
+    }
+
+    public void setConfigPath(String configPath) {
+        this.configPath = configPath;
+    }
+
+    /*
+    * head & hair file 本地是完整的路径，server 上只有文件名，从服务器同步数据时要改成本地形式的完整路径
+    * */
+    public void updateNewServerAvatar(AvatarPTA newAvatar) {
+        String newHeadFile = newAvatar.bundleDir + File.separator + newAvatar.headFile;
+        String oldHeadFile = headFile;
+        ConfigFileUtil.INSTANCE.copyFile(oldHeadFile, newHeadFile);
+        newAvatar.headFile = newHeadFile;
+
+        String newHairFile = newAvatar.bundleDir + File.separator + newAvatar.hairFile;
+        String oldHairFile = hairFile;
+        ConfigFileUtil.INSTANCE.copyFile(oldHairFile, newHairFile);
+        newAvatar.hairFile = newHairFile;
+    }
+
+    public boolean isSystemDefaultAvatar() {
+        return bundleDir == "new/head/head_1/" || bundleDir == "new/head/head_2/";
+    }
+
     @Override
     public String toString() {
         return " bundleDir " + bundleDir + " isCreateAvatar " + isCreateAvatar + "\n"
@@ -622,6 +677,8 @@ public class AvatarPTA implements Serializable {
         avatarP2A.eyeshadowColorValue = this.eyeshadowColorValue;
         avatarP2A.lipglossColorValue = this.lipglossColorValue;
         avatarP2A.eyelashColorValue = this.eyelashColorValue;
+
+        avatarP2A.modelId = this.modelId;
 
         return avatarP2A;
     }

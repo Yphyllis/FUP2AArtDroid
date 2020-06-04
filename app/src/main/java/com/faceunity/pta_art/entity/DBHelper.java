@@ -20,17 +20,19 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 31;
+    public static final int DATABASE_VERSION = 32;
 
     static final String DATABASE_NAME = Constant.APP_NAME + "_avatar.db";
     static final String HISTORY_TABLE_NAME = "avatar_history";
 
     static final String HISTORY_CLOUMN_ID = "id";
+    static final String HISTORY_MODEL_ID = "model_id";
     static final String HISTORY_DIR = "dir";
     static final String HISTORY_STYLE = "style";
     static final String HISTORY_IMAGE_ORIGIN = "img_origin";
     static final String HISTORY_IMAGE_THUMB_NAIL = "img_thumb_nail";
     static final String HISTORY_Q_FINAL_URI = "head";
+    static final String HISTORY_HAIR = "hair";
     static final String HISTORY_GENDER = "gender";
     static final String HISTORY_HAIR_INDEX = "hair_index";
     static final String HISTORY_GLASSES_INDEX = "glasses_index";
@@ -82,6 +84,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         " img_origin text," +
                         " img_thumb_nail text," +
                         " head text," +
+                        " hair text," +
+                        " model_id text," +
                         " gender integer," +
                         " hair_index integer," +
                         " glasses_index integer," +
@@ -136,6 +140,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(HISTORY_IMAGE_ORIGIN, avatarP2A.getOriginPhoto());
         contentValues.put(HISTORY_IMAGE_THUMB_NAIL, avatarP2A.getOriginPhotoThumbNail());
         contentValues.put(HISTORY_Q_FINAL_URI, avatarP2A.getHeadFile());
+        contentValues.put(HISTORY_HAIR, avatarP2A.getHairFile());
         contentValues.put(HISTORY_HAIR_INDEX, avatarP2A.getHairIndex());
         contentValues.put(HISTORY_GLASSES_INDEX, avatarP2A.getGlassesIndex());
         contentValues.put(HISTORY_CLOTHES_INDEX, avatarP2A.getClothesIndex());
@@ -173,6 +178,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put(HISTORY_GENDER, avatarP2A.getGender());
         contentValues.put(HISTORY_BODY_LEVEL, avatarP2A.getBodyLevel());
+
+        contentValues.put(HISTORY_MODEL_ID, avatarP2A.getModelId());
+
         db.insert(HISTORY_TABLE_NAME, null, contentValues);
         db.close();
         return true;
@@ -186,6 +194,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(HISTORY_IMAGE_ORIGIN, avatarP2A.getOriginPhoto());
         contentValues.put(HISTORY_IMAGE_THUMB_NAIL, avatarP2A.getOriginPhotoThumbNail());
         contentValues.put(HISTORY_Q_FINAL_URI, avatarP2A.getHeadFile());
+        contentValues.put(HISTORY_HAIR, avatarP2A.getHairFile());
         contentValues.put(HISTORY_HAIR_INDEX, avatarP2A.getHairIndex());
         contentValues.put(HISTORY_GLASSES_INDEX, avatarP2A.getGlassesIndex());
         contentValues.put(HISTORY_CLOTHES_INDEX, avatarP2A.getClothesIndex());
@@ -223,6 +232,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put(HISTORY_GENDER, avatarP2A.getGender());
         contentValues.put(HISTORY_BODY_LEVEL, avatarP2A.getBodyLevel());
+
+        contentValues.put(HISTORY_MODEL_ID, avatarP2A.getModelId());
+
         db.update(HISTORY_TABLE_NAME, contentValues, HISTORY_DIR + "=?", new String[]{avatarP2A.getBundleDir()});
         db.close();
         return true;
@@ -250,6 +262,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         int bundleDirIndex = res.getColumnIndex(HISTORY_DIR);
         int qBundleIndex = res.getColumnIndex(HISTORY_Q_FINAL_URI);
+        int hairFileIndex = res.getColumnIndex(HISTORY_HAIR);
         int genderIndex = res.getColumnIndex(HISTORY_GENDER);
         int imageOriginIndex = res.getColumnIndex(HISTORY_IMAGE_ORIGIN);
         int imageThumbNailIndex = res.getColumnIndex(HISTORY_IMAGE_THUMB_NAIL);
@@ -288,9 +301,12 @@ public class DBHelper extends SQLiteOpenHelper {
         int eyebrowColorIndex = res.getColumnIndex(HISTORY_EYEBROW_COLOR);
         int eyeshadowColorIndex = res.getColumnIndex(HISTORY_EYESHADOW_COLOR);
 
+        int modelIdIndex = res.getColumnIndex(HISTORY_MODEL_ID);
+
         int bodyLevel = res.getColumnIndex(HISTORY_BODY_LEVEL);
         while (!res.isAfterLast()) {
             AvatarPTA historyItem = new AvatarPTA(res.getString(bundleDirIndex), res.getInt(genderIndex), res.getString(qBundleIndex));
+            historyItem.setHairFile(res.getString(hairFileIndex));
             historyItem.setOriginPhotoThumbNail(res.getString(imageThumbNailIndex));
             historyItem.setOriginPhoto(res.getString(imageOriginIndex));
             historyItem.setHairIndex(res.getInt(hairIndex));
@@ -328,6 +344,8 @@ public class DBHelper extends SQLiteOpenHelper {
             historyItem.setEyebrowColorValue(res.getDouble(eyebrowColorIndex));
             historyItem.setEyeshadowColorValue(res.getDouble(eyeshadowColorIndex));
 
+            historyItem.setModelId(res.getString(modelIdIndex));
+
             historyItem.setBodyLevel(res.getInt(bodyLevel));
             allHistoryItemList.add(historyItem);
             res.moveToNext();
@@ -340,8 +358,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public List<AvatarPTA> getAllAvatarP2As() {
-        List<AvatarPTA> p2AS = FilePathFactory.getDefaultAvatarP2As();
-        p2AS.addAll(getAllHistoryItems());
-        return p2AS;
+        List<AvatarPTA> historyItems = getAllHistoryItems();
+        if (historyItems.isEmpty()) {
+            List<AvatarPTA> p2AS = FilePathFactory.getDefaultAvatarP2As();
+            historyItems.addAll(p2AS);
+        }
+        return historyItems;
     }
 }

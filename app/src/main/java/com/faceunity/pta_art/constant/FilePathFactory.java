@@ -184,10 +184,10 @@ public abstract class FilePathFactory {
                                   "new/head/head_1/head.bundle", 7, 0,
                                   0, 1, 1, 1,
                                   0, 1));
-        p2AS.add(1, new AvatarPTA("new/head/head_2/", R.drawable.head_2_female, AvatarPTA.gender_girl,
-                                  "new/head/head_2/head.bundle", 25, 0,
-                                  0, 5, 1, 1,
-                                  0, 1));
+//        p2AS.add(1, new AvatarPTA("new/head/head_2/", R.drawable.head_2_female, AvatarPTA.gender_girl,
+//                                  "new/head/head_2/head.bundle", 25, 0,
+//                                  0, 5, 1, 1,
+//                                  0, 1));
         return p2AS;
     }
 

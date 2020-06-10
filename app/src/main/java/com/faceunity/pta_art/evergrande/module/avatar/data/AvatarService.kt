@@ -65,4 +65,11 @@ class AvatarService {
                 .asResponse(ModelDO::class.java)
     }
 
+    fun getAvatarList(): Observable<List<AvatarDO>> {
+        return RxHttp.postJson("virtual/loadList")
+                .add("userId", UserManager.getUserId())
+                .asResponse(AvatarItem::class.java)
+                .map { it.virtualModel }
+    }
+
 }

@@ -5,6 +5,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\022542140\\Desktop\\evergrande\\cert\\evergrandeauto.release.jks')
+            storePassword 'ever2020'
+            keyAlias = 'vpa'
+            keyPassword 'ever2020vpa'
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.faceunity.p2aart"
@@ -29,7 +38,7 @@ android {
     }
     buildTypes {
         debug {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {

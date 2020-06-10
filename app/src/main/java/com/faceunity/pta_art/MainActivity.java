@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     /**
      * 添加重力感应
      */
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
+//    private SensorManager mSensorManager;
+//    private Sensor mSensor;
 
     /**
      * 是否可以点击
@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+//        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         mP2ACore.setAniLoadCompletedListener(listener);
 
@@ -207,13 +207,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onResume() {
         super.onResume();
         mCameraRenderer.openCamera();
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+//        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);
+//        mSensorManager.unregisterListener(this);
         mCameraRenderer.releaseCamera();
     }
 

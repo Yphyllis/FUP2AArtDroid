@@ -3,6 +3,7 @@ package com.faceunity.pta_art.entity;
 import android.text.TextUtils;
 
 import com.faceunity.pta_art.constant.FilePathFactory;
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager;
 import com.faceunity.pta_art.evergrande.utils.ConfigFileUtil;
 import com.google.gson.annotations.Expose;
 
@@ -29,6 +30,8 @@ public class AvatarPTA implements Serializable {
     @Expose
     private boolean isCreateAvatar = true;
 
+    @Expose
+    private String userId = "";
     private String bundleDir = "";
     private int originPhotoRes = -1;
     private String originPhoto = "";
@@ -110,6 +113,7 @@ public class AvatarPTA implements Serializable {
     public AvatarPTA(String bundleDir, int originPhotoRes, int gender, String headFile, int hairIndex, int beardIndex,
                      int clothesIndex, int clothesUpperIndex, int clothesLowerIndex,
                      int shoeIndex, int decorationsIndex, int background2DIndex) {
+        this.userId = UserManager.INSTANCE.getUserId();
         this.bundleDir = bundleDir;
         this.originPhotoRes = originPhotoRes;
         this.gender = gender;
@@ -151,6 +155,8 @@ public class AvatarPTA implements Serializable {
         } else {
             this.lipglossColorValue = 6;
         }
+
+        this.userId = UserManager.INSTANCE.getUserId();
     }
 
     public boolean isCreateAvatar() {
@@ -419,6 +425,9 @@ public class AvatarPTA implements Serializable {
     }
 
     public String getHairFile() {
+        if ( new File(hairFile).exists()) {
+            return hairFile;
+        }
         List<BundleRes> lists = FilePathFactory.hairBundleRes(gender);
         String name = lists == null || lists.isEmpty() || hairIndex < 0 || hairIndex >= lists.size() ? "" : lists.get(hairIndex).name;
         return bundleDir + name;
@@ -577,6 +586,14 @@ public class AvatarPTA implements Serializable {
         this.modelId = modelId;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public String getConfigPath() {
         return configPath;
     }
@@ -586,8 +603,8 @@ public class AvatarPTA implements Serializable {
     }
 
     /*
-    * head & hair file 本地是完整的路径，server 上只有文件名，从服务器同步数据时要改成本地形式的完整路径
-    * */
+     * head & hair file 本地是完整的路径，server 上只有文件名，从服务器同步数据时要改成本地形式的完整路径
+     * */
     public void updateNewServerAvatar(AvatarPTA newAvatar) {
         String newHeadFile = newAvatar.bundleDir + File.separator + newAvatar.headFile;
         String oldHeadFile = headFile;
@@ -595,7 +612,7 @@ public class AvatarPTA implements Serializable {
         newAvatar.headFile = newHeadFile;
 
         String newHairFile = newAvatar.bundleDir + File.separator + newAvatar.hairFile;
-        String oldHairFile = hairFile;
+        String oldHairFile = getHairFile();
         ConfigFileUtil.INSTANCE.copyFile(oldHairFile, newHairFile);
         newAvatar.hairFile = newHairFile;
     }
@@ -606,7 +623,7 @@ public class AvatarPTA implements Serializable {
 
     @Override
     public String toString() {
-        return " bundleDir " + bundleDir + " isCreateAvatar " + isCreateAvatar + "\n"
+        return " userId" + userId + " bundleDir " + bundleDir + " isCreateAvatar " + isCreateAvatar + "\n"
                 + " originPhotoRes " + originPhotoRes + " originPhoto " + originPhoto + " originPhotoThumbNail " + originPhotoThumbNail + "\n"
                 + " gender " + gender + "\n"
                 + " mHeadFile " + headFile + " lipColorValue " + lipColorValue + " irisColorValue " + irisColorValue + " skinColorValue " + skinColorValue + "\n"
@@ -631,6 +648,7 @@ public class AvatarPTA implements Serializable {
     @Override
     public AvatarPTA clone() {
         AvatarPTA avatarP2A = new AvatarPTA();
+        avatarP2A.userId = this.userId;
         avatarP2A.isCreateAvatar = this.isCreateAvatar;
         avatarP2A.bundleDir = this.bundleDir;
         avatarP2A.originPhotoRes = this.originPhotoRes;

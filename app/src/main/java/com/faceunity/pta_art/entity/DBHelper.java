@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.faceunity.pta_art.constant.Constant;
 import com.faceunity.pta_art.constant.FilePathFactory;
+import com.faceunity.pta_art.evergrande.module.login.data.UserManager;
 import com.faceunity.pta_art.utils.FileUtil;
 
 import java.util.ArrayList;
@@ -20,12 +21,13 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 32;
+    public static final int DATABASE_VERSION = 34;
 
     static final String DATABASE_NAME = Constant.APP_NAME + "_avatar.db";
     static final String HISTORY_TABLE_NAME = "avatar_history";
 
     static final String HISTORY_CLOUMN_ID = "id";
+    static final String HISTORY_USER_ID = "user_id";
     static final String HISTORY_MODEL_ID = "model_id";
     static final String HISTORY_DIR = "dir";
     static final String HISTORY_STYLE = "style";
@@ -80,6 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table avatar_history" +
                         "(id integer primary key," +
                         " dir text," +
+                        " user_id text," +
                         " style integer," +
                         " img_origin text," +
                         " img_thumb_nail text," +
@@ -135,6 +138,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertHistory(AvatarPTA avatarP2A) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(HISTORY_USER_ID, UserManager.INSTANCE.getUserId());
         contentValues.put(HISTORY_STYLE, Constant.style);
         contentValues.put(HISTORY_DIR, avatarP2A.getBundleDir());
         contentValues.put(HISTORY_IMAGE_ORIGIN, avatarP2A.getOriginPhoto());
@@ -189,6 +193,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateHistory(AvatarPTA avatarP2A) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(HISTORY_USER_ID, UserManager.INSTANCE.getUserId());
         contentValues.put(HISTORY_STYLE, Constant.style);
         contentValues.put(HISTORY_DIR, avatarP2A.getBundleDir());
         contentValues.put(HISTORY_IMAGE_ORIGIN, avatarP2A.getOriginPhoto());
@@ -261,6 +266,7 @@ public class DBHelper extends SQLiteOpenHelper {
         List<AvatarPTA> allHistoryItemList = new ArrayList<>();
 
         int bundleDirIndex = res.getColumnIndex(HISTORY_DIR);
+        int userIdIndex = res.getColumnIndex(HISTORY_USER_ID);
         int qBundleIndex = res.getColumnIndex(HISTORY_Q_FINAL_URI);
         int hairFileIndex = res.getColumnIndex(HISTORY_HAIR);
         int genderIndex = res.getColumnIndex(HISTORY_GENDER);
@@ -306,6 +312,7 @@ public class DBHelper extends SQLiteOpenHelper {
         int bodyLevel = res.getColumnIndex(HISTORY_BODY_LEVEL);
         while (!res.isAfterLast()) {
             AvatarPTA historyItem = new AvatarPTA(res.getString(bundleDirIndex), res.getInt(genderIndex), res.getString(qBundleIndex));
+            historyItem.setUserId(res.getString(userIdIndex));
             historyItem.setHairFile(res.getString(hairFileIndex));
             historyItem.setOriginPhotoThumbNail(res.getString(imageThumbNailIndex));
             historyItem.setOriginPhoto(res.getString(imageOriginIndex));
@@ -347,7 +354,10 @@ public class DBHelper extends SQLiteOpenHelper {
             historyItem.setModelId(res.getString(modelIdIndex));
 
             historyItem.setBodyLevel(res.getInt(bodyLevel));
-            allHistoryItemList.add(historyItem);
+
+            if (historyItem.getUserId().equals(UserManager.INSTANCE.getUserId())) {
+                allHistoryItemList.add(historyItem);
+            }
             res.moveToNext();
         }
 

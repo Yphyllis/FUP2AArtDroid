@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
+import com.faceunity.pta_art.BuildConfig
 import com.faceunity.pta_art.R
 import com.faceunity.pta_art.evergrande.module.login.LoginActivity
 import com.faceunity.pta_art.evergrande.module.login.data.UserManager
@@ -22,8 +23,6 @@ class MyFragment : BaseFragment() {
         val TAG = "MyFragment"
     }
 
-    private var tvLogout: TextView? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_my, container, false)
     }
@@ -36,6 +35,7 @@ class MyFragment : BaseFragment() {
         view.findViewById<TextView>(R.id.tvLogout).setOnClickListener {
             logoutByClick()
         }
+        view.findViewById<TextView>(R.id.tvVersion).text = "Version: ${BuildConfig.VERSION_NAME}"
     }
 
     private fun logoutByClick() {

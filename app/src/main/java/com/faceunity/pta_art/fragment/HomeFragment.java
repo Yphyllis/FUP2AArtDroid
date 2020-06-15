@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -98,6 +97,7 @@ public class HomeFragment extends BaseFragment
 
                         @Override
                         public void onError(Throwable e) {
+                            ToastUtil.showCenterToast(getContext(), "上传失败" + e.toString());
                             Log.e(TAG, "createOrUpdateAvatar error", e);
                         }
                     });

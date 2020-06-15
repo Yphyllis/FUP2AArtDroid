@@ -11,12 +11,12 @@
         android:layout_width="@dimen/x108"
         android:layout_height="@dimen/x108"
         android:layout_marginTop="@dimen/x2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@android:color/transparent"
         android:padding="@dimen/x12"
         android:scaleType="centerInside"
-        android:src="@drawable/icon_back_tab" />
+        android:src="@drawable/icon_back_tab"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,14 +30,26 @@
 
     <TextView
         android:id="@+id/tvLogout"
-        android:text="退出登录"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="@dimen/margin_small_normal"
-        android:textSize="@dimen/text_normal"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small_normal"
+        android:text="退出登录"
         android:textColor="@color/textWrongColor"
-        android:layout_height="wrap_content"/>
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintBottom_toTopOf="@+id/tvVersion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small_normal"
+        android:textColor="@color/textMinorColor"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Version: 1.8.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
